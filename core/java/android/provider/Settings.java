@@ -10754,6 +10754,14 @@ public final class Settings {
         public static final String SYSUI_ROUNDED_FWVALS = "sysui_rounded_fwvals";
 
         /**
+         * Defines the device hostname
+         * @hide
+         */
+        public static final String DEVICE_HOSTNAME = "device_hostname";
+
+        private static  final Validator DEVICE_HOSTNAME_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -10907,6 +10915,7 @@ public final class Settings {
             LOCKSCREEN_SOLID_FUDGE_FACTOR,
             LOCKSCREEN_SOLID_UNITS_OPACITY,
             VOLUME_LINK_NOTIFICATION,
+            DEVICE_HOSTNAME,
         };
 
         /**
@@ -11115,6 +11124,7 @@ public final class Settings {
             VALIDATORS.put(LOCKSCREEN_SOLID_UNITS_OPACITY, LOCKSCREEN_SOLID_UNITS_OPACITY_VALIDATOR);
             VALIDATORS.put(VOLUME_LINK_NOTIFICATION, VOLUME_LINK_NOTIFICATION_VALIDATOR);
             VALIDATORS.put(QUICK_SETTINGS_TILES_VIBRATE, QUICK_SETTINGS_TILES_VIBRATE_VALIDATOR);
+            VALIDATORS.put(DEVICE_HOSTNAME, DEVICE_HOSTNAME_VALIDATOR);
         }
 
         /**
