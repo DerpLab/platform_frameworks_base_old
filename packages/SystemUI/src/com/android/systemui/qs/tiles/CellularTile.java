@@ -128,11 +128,7 @@ public class CellularTile extends QSTileImpl<SignalState> {
             });
             return;
         }
-        if (mDataController.isMobileDataEnabled()) {
-            maybeShowDisableDialog();
-        } else {
-            mDataController.setMobileDataEnabled(true);
-        }
+        mDataController.setMobileDataEnabled(!mDataController.isMobileDataEnabled());
     }
 
     private boolean isUnlockingRequired() {
