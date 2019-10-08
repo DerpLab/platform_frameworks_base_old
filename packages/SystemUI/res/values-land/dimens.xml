@@ -36,4 +36,6 @@
 
     <dimen name="volume_tool_tip_right_margin">136dp</dimen>
     <dimen name="volume_tool_tip_top_margin">12dp</dimen>
+
+    <dimen name="qs_custom_header_offset">0dp</dimen>
 </resources>
