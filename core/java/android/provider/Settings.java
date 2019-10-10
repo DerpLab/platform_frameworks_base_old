@@ -5494,6 +5494,24 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+         * Whether to enable Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT = "pulse_ambient_light";
+
+        /** @hide */
+        private static final Validator PULSE_AMBIENT_LIGHT_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
+         * What color to use for Ambient edge light
+         * @hide
+         */
+        public static final String PULSE_AMBIENT_LIGHT_COLOR = "pulse_ambient_light_color";
+
+        /** @hide */
+        private static final Validator PULSE_AMBIENT_LIGHT_COLOR_VALIDATOR = ANY_STRING_VALIDATOR;
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
@@ -5626,6 +5644,8 @@ public final class Settings {
             VIBRATE_ON_DISCONNECT,
             DOZE_ON_CHARGE,
             USE_OLD_MOBILETYPE,
+            PULSE_AMBIENT_LIGHT,
+            PULSE_AMBIENT_LIGHT_COLOR,
         };
 
         /**
@@ -5845,6 +5865,8 @@ public final class Settings {
             PRIVATE_SETTINGS.add(DISPLAY_CUTOUT_HIDDEN);
             PRIVATE_SETTINGS.add(NOTIFICATION_SOUND_VIB_SCREEN_ON);
             PRIVATE_SETTINGS.add(USE_OLD_MOBILETYPE);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT);
+            PRIVATE_SETTINGS.add(PULSE_AMBIENT_LIGHT_COLOR);
         }
 
         /**
@@ -6026,6 +6048,8 @@ public final class Settings {
             VALIDATORS.put(NOTIFICATION_SOUND_VIB_SCREEN_ON,
                     NOTIFICATION_SOUND_VIB_SCREEN_ON_VALIDATOR);
             VALIDATORS.put(USE_OLD_MOBILETYPE, USE_OLD_MOBILETYPE_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT, PULSE_AMBIENT_LIGHT_VALIDATOR);
+            VALIDATORS.put(PULSE_AMBIENT_LIGHT_COLOR, PULSE_AMBIENT_LIGHT_COLOR_VALIDATOR);
         }
 
         /**
