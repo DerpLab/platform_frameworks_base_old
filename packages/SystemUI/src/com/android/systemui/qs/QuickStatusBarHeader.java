@@ -600,37 +600,6 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     }
 
     @Override
-    public WindowInsets onApplyWindowInsets(WindowInsets insets) {
-        DisplayCutout cutout = insets.getDisplayCutout();
-        Pair<Integer, Integer> padding = PhoneStatusBarView.cornerCutoutMargins(
-                cutout, getDisplay());
-        if (padding == null) {
-            mSystemIconsView.setPaddingRelative(
-                    getResources().getDimensionPixelSize(R.dimen.status_bar_padding_start), 0,
-                    getResources().getDimensionPixelSize(R.dimen.status_bar_padding_end), 0);
-        } else {
-            mSystemIconsView.setPadding(padding.first, 0, padding.second, 0);
-
-        }
-        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) mSpace.getLayoutParams();
-        if (cutout != null) {
-            Rect topCutout = cutout.getBoundingRectTop();
-            if (topCutout.isEmpty()) {
-                mHasTopCutout = false;
-                lp.width = 0;
-                mSpace.setVisibility(View.GONE);
-            } else {
-                mHasTopCutout = true;
-                lp.width = topCutout.width();
-                mSpace.setVisibility(View.VISIBLE);
-            }
-        }
-        mSpace.setLayoutParams(lp);
-        setChipVisibility(mPrivacyChip.getVisibility() == View.VISIBLE);
-        return super.onApplyWindowInsets(insets);
-    }
-
-    @Override
     @VisibleForTesting
     public void onDetachedFromWindow() {
         setListening(false);
