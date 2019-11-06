@@ -451,8 +451,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mHeaderTextContainerView.setLayoutParams(mHeaderTextContainerView.getLayoutParams());
 
         int topMargin = resources.getDimensionPixelSize(
-                com.android.internal.R.dimen.quick_qs_offset_height) + (mHeaderImageEnabled ?
-                resources.getDimensionPixelSize(R.dimen.qs_header_image_offset) : 0);
+                com.android.internal.R.dimen.quick_qs_offset_height) + (
+                resources.getDimensionPixelSize(R.dimen.qs_header_image_offset));
 
         int statusBarBottomMargin = resources.getDimensionPixelSize(
                 R.dimen.qs_header_image_bottom_margin);
@@ -461,20 +461,13 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mSystemIconsView.setLayoutParams(mSystemIconsView.getLayoutParams());
 
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) getLayoutParams();
-        if (mQsDisabled) {
-            lp.height = topMargin;
-        } else {
-            int qsHeight = resources.getDimensionPixelSize(
-                    com.android.internal.R.dimen.quick_qs_total_height);
+        int qsHeight = resources.getDimensionPixelSize(
+                com.android.internal.R.dimen.quick_qs_total_height);
 
-            if (mHeaderImageEnabled) {
-                qsHeight += resources.getDimensionPixelSize(R.dimen.qs_header_image_offset);
-            }
-
-            // always add the margin below the statusbar with or without image
-            qsHeight += statusBarBottomMargin;
-            lp.height = Math.max(getMinimumHeight(), qsHeight);
-        }
+        qsHeight += resources.getDimensionPixelSize(R.dimen.qs_header_image_offset);
+        // always add the margin below the statusbar with or without image
+        qsHeight += statusBarBottomMargin;
+        lp.height = Math.max(getMinimumHeight(), qsHeight);
 
         setLayoutParams(lp);
 
