@@ -122,6 +122,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
     private boolean mListening;
     private boolean mQsDisabled;
     private boolean isShowDragHandle;
+    private boolean isAlwaysShowSettings;
 
     private QSCarrierGroup mCarrierGroup;
     protected QuickQSPanel mHeaderQsPanel;
@@ -174,6 +175,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                     this, UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System
                     .getUriFor(Settings.System.QS_DRAG_HANDLE), false,
+                    this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System
+                    .getUriFor(Settings.System.QS_ALWAYS_SHOW_SETINGS), false,
                     this, UserHandle.USER_ALL);
             }
 
@@ -469,8 +473,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 com.android.internal.R.dimen.quick_qs_total_height);
 
         qsHeight += resources.getDimensionPixelSize(R.dimen.qs_header_image_offset);
-        if (!isShowDragHandle)
-            qsHeight -= 20; // save some space if drag handle is not shown
+        if (!isShowDragHandle && !isAlwaysShowSettings)
+            qsHeight -= 20; // save some space if drag handle & settings icon are not shown
         // always add the margin below the statusbar with or without image
         qsHeight += statusBarBottomMargin;
         lp.height = Math.max(getMinimumHeight(), qsHeight);
@@ -781,6 +785,9 @@ public class QuickStatusBarHeader extends RelativeLayout implements
                 UserHandle.USER_CURRENT) == 1;
         isShowDragHandle = Settings.System.getIntForUser(getContext().getContentResolver(),
                 Settings.System.QS_DRAG_HANDLE, 1,
+                UserHandle.USER_CURRENT) == 1;
+        isAlwaysShowSettings = Settings.System.getIntForUser(getContext().getContentResolver(),
+                Settings.System.QS_ALWAYS_SHOW_SETINGS, 0,
                 UserHandle.USER_CURRENT) == 1;
         updateQSBatteryMode();
         updateSBBatteryStyle();

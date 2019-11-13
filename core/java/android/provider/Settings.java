@@ -4823,6 +4823,15 @@ public final class Settings {
                 BOOLEAN_VALIDATOR;
 
         /**
+        * Wether to always show QS settings icon
+        * @hide
+        */
+        public static final String QS_ALWAYS_SHOW_SETINGS = "qs_always_show_settings";
+        /** @hide */
+        private static final Validator QS_ALWAYS_SHOW_SETINGS_VALIDATOR =
+                BOOLEAN_VALIDATOR;
+
+        /**
          * Stores the java DateFormat string for the date
          * @hide
          */
