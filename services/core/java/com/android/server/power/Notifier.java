@@ -639,7 +639,7 @@ public class Notifier {
         mSuspendBlocker.acquire();
         Message msg = mHandler.obtainMessage(MSG_WIRELESS_CHARGING_STARTED);
         msg.setAsynchronous(true);
-        msg.arg1 = batteryLevel;
+        msg.arg2 = batteryLevel;
         msg.arg2 = userId;
         mHandler.sendMessage(msg);
     }
