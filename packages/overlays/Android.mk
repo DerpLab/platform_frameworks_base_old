@@ -34,6 +34,8 @@ LOCAL_REQUIRED_MODULES := \
 	FontSonySketchSourceOverlay \
 	FontSurferSourceOverlay \
 	FontRubikRubikOverlay \
+	FontCircularStdOverlay \
+	FontOnePlusSlateOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularPixelLauncherOverlay \
 	IconPackCircularPixelThemePickerOverlay \
