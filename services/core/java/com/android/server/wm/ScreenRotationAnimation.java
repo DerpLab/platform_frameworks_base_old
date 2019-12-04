@@ -1024,6 +1024,7 @@ class ScreenRotationAnimation {
                      } else if (mSurfaceControl != null){
                         Slog.e(TAG,
                           "No animation, exceeded freeze timeout. Destroy Screenshot layer");
+                        mService.mTransactionFactory.make().remove(mSurfaceControl).apply();
                         mSurfaceControl = null;
                      }
                      break;
