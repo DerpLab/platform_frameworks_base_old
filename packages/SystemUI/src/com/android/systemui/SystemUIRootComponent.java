@@ -23,6 +23,8 @@ import com.android.systemui.statusbar.phone.StatusBar;
 import com.android.systemui.util.InjectionInflationController;
 import com.android.systemui.util.leak.GarbageMonitor;
 
+import com.google.android.systemui.SystemUIGoogleModule;
+
 import javax.inject.Named;
 import javax.inject.Singleton;
 
@@ -37,6 +39,7 @@ import dagger.Component;
         DependencyBinder.class,
         ServiceBinder.class,
         SystemUIFactory.ContextHolder.class,
+        SystemUIGoogleModule.class,
         SystemUIModule.class,
         SystemUIDefaultModule.class})
 public interface SystemUIRootComponent {
