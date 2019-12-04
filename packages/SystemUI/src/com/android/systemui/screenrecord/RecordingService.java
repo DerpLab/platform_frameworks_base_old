@@ -52,9 +52,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Locale;
-
-import static android.os.Environment.DIRECTORY_MOVIES;
 
 /**
  * A service which records the device screen and optionally microphone input.
@@ -227,12 +224,9 @@ public class RecordingService extends Service {
      */
     private void startRecording() {
         try {
-            try {
-                mTempFile = File.createTempFile("temp", ".mp4");
-                Log.d(TAG, "Writing video output to: " + mTempFile.getAbsolutePath());
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            mTempFile = File.createTempFile("temp", ".mp4");
+            Log.d(TAG, "Writing video output to: " + mTempFile.getAbsolutePath());
+
             setTapsVisible(mShowTaps);
 
             // Set up media recorder
