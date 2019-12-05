@@ -5479,12 +5479,6 @@ public final class Settings {
          public static final String STATUS_BAR_LOGO_COLOR = "status_bar_logo_color";
 
         /**
-         * Defines the screen-off animation to display
-         * @hide
-         */
-        public static final String SCREEN_OFF_ANIMATION = "screen_off_animation";
-
-        /**
          * @hide
          */
         public static final String USE_OLD_MOBILETYPE = "use_old_mobiletype";
