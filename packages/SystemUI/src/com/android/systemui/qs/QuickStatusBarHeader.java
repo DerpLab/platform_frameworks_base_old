@@ -459,8 +459,8 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mHeaderTextContainerView.setLayoutParams(mHeaderTextContainerView.getLayoutParams());*/
 
         int topMargin = resources.getDimensionPixelSize(
-                com.android.internal.R.dimen.quick_qs_offset_height) + (
-                resources.getDimensionPixelSize(R.dimen.qs_header_image_offset));
+                com.android.internal.R.dimen.quick_qs_offset_height) + (mHeaderImageEnabled ?
+                resources.getDimensionPixelSize(R.dimen.qs_header_image_offset) : 0);
 
         int statusBarBottomMargin = resources.getDimensionPixelSize(
                 R.dimen.qs_header_image_bottom_margin);
@@ -469,15 +469,18 @@ public class QuickStatusBarHeader extends RelativeLayout implements
         mSystemIconsView.setLayoutParams(mSystemIconsView.getLayoutParams());
 
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) getLayoutParams();
-        int qsHeight = resources.getDimensionPixelSize(
-                com.android.internal.R.dimen.quick_qs_total_height);
+        if (mQsDisabled) {
+            lp.height = topMargin;
+        } else {
+            int qsHeight = resources.getDimensionPixelSize(
+                    com.android.internal.R.dimen.quick_qs_total_height);
 
-        qsHeight += resources.getDimensionPixelSize(R.dimen.qs_header_image_offset);
-        if (!isShowDragHandle && !isAlwaysShowSettings)
-            qsHeight -= 20; // save some space if drag handle & settings icon are not shown
-        // always add the margin below the statusbar with or without image
-        qsHeight += statusBarBottomMargin;
-        lp.height = Math.max(getMinimumHeight(), qsHeight);
+            if (mHeaderImageEnabled) {
+                qsHeight += resources.getDimensionPixelSize(R.dimen.qs_header_image_offset);
+            }
+
+            lp.height = Math.max(getMinimumHeight(), qsHeight);
+        }
 
         setLayoutParams(lp);
 
