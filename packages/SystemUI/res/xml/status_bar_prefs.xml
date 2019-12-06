@@ -114,8 +114,7 @@
         <SwitchPreference
             android:key="data_disabled_icon"
             android:title="@string/data_disabled_icon_title"
-            android:summary="@string/data_disabled_icon_summary"
-            android:defaultValue="true" />
+            android:summary="@string/data_disabled_icon_summary" />
 
     </PreferenceCategory>
 
