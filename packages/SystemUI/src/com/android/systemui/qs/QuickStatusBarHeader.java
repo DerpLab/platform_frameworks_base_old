@@ -394,7 +394,7 @@ public class QuickStatusBarHeader extends RelativeLayout implements
             }
 
             if (!isShowDragHandle && !isAlwaysShowSettings)
-                qsHeight -= 20; // save some space if drag handle & settings icon are not shown
+                qsHeight -= 40; // save some space if drag handle & settings icon are not shown
 
             lp.height = Math.max(getMinimumHeight(), qsHeight);
         }
