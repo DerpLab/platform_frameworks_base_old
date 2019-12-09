@@ -32,7 +32,8 @@ LOCAL_REQUIRED_MODULES := \
 	AccentColorOnePlusOverlay \
 	AccentColorParanoidOverlay \
 	AccentColorPepsiOverlay \
-        AccentColorRazerOverlay \
+	AccentColorPurelyPurpleOverlay \
+	AccentColorRazerOverlay \
         AccentColorStarbucksOverlay \
 	AccentColorXboxOverlay \
 	AccentColorXiaomiOverlay \
