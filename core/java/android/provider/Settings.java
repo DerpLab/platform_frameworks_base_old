@@ -14751,6 +14751,14 @@ public final class Settings {
         public static final String KEEP_PROFILE_IN_BACKGROUND = "keep_profile_in_background";
 
         /**
+         * Flag to automatically use aggressive app idle constants with battery saver.
+         * Type: int (0 for false, 1 for true)
+         * Default: 0
+         * @hide
+         */
+        public static final String AGGRESSIVE_STANDBY_ENABLED = "aggressive_standby_enabled";
+
+        /**
          * The default time in ms within which a subsequent connection from an always allowed system
          * is allowed to reconnect without user interaction.
          *
