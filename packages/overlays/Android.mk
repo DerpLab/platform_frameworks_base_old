@@ -40,17 +40,17 @@ LOCAL_REQUIRED_MODULES := \
 	FontSurferSourceOverlay \
 	IconPackCircularAndroidOverlay \
 	IconPackCircularPixelLauncherOverlay \
-	IconPackCircularPixelThemePickerOverlay \
+	IconPackCircularThemePickerOverlay \
 	IconPackCircularSettingsOverlay \
 	IconPackCircularSystemUIOverlay \
 	IconPackFilledAndroidOverlay \
 	IconPackFilledPixelLauncherOverlay \
-	IconPackFilledPixelThemePickerOverlay \
+	IconPackFilledThemePickerOverlay \
 	IconPackFilledSettingsOverlay \
 	IconPackFilledSystemUIOverlay \
 	IconPackRoundedAndroidOverlay \
 	IconPackRoundedPixelLauncherOverlay \
-	IconPackRoundedPixelThemePickerOverlay \
+	IconPackRoundedThemePickerOverlay \
 	IconPackRoundedSettingsOverlay \
 	IconPackRoundedSystemUIOverlay \
 	IconShapeRoundedRectOverlay \
