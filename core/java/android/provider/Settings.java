@@ -10758,6 +10758,14 @@ public final class Settings {
                 ANY_STRING_VALIDATOR;
 
         /**
+         * Whether to hide lock icon on lockscreen
+         * {@hide}
+         */
+        public static final String HIDE_LOCKICON = "hide_lockicon";
+
+        private static final Validator HIDE_LOCKICON_VALIDATOR = BOOLEAN_VALIDATOR;
+
+        /**
          * This are the settings to be backed up.
          *
          * NOTE: Settings are backed up and restored in the order they appear
@@ -10916,6 +10924,7 @@ public final class Settings {
             SYSUI_ROUNDED_CONTENT_PADDING,
             SYSUI_STATUS_BAR_PADDING,
             DEVICE_HOSTNAME,
+            HIDE_LOCKICON,
         };
 
         /**
@@ -11129,6 +11138,7 @@ public final class Settings {
             VALIDATORS.put(SYSUI_ROUNDED_CONTENT_PADDING, SYSUI_ROUNDED_CONTENT_PADDING_VALIDATOR);
             VALIDATORS.put(SYSUI_STATUS_BAR_PADDING, SYSUI_STATUS_BAR_PADDING_VALIDATOR);
             VALIDATORS.put(DEVICE_HOSTNAME, DEVICE_HOSTNAME_VALIDATOR);
+            VALIDATORS.put(HIDE_LOCKICON, HIDE_LOCKICON_VALIDATOR);
         }
 
         /**
