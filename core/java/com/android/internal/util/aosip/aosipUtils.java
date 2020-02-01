@@ -295,31 +295,6 @@ public class aosipUtils {
         }
     }
 
-    /**
-     * @hide
-     */
-    public static final String SYSTEMUI_PACKAGE_NAME = "com.android.systemui";
-
-    /**
-     * @hide
-     */
-    public static final String ACTION_DISMISS_KEYGUARD = SYSTEMUI_PACKAGE_NAME +".ACTION_DISMISS_KEYGUARD";
-
-    /**
-     * @hide
-     */
-    public static final String DISMISS_KEYGUARD_EXTRA_INTENT = "launch";
-
-    /**
-     * @hide
-     */
-    public static void launchKeyguardDismissIntent(Context context, UserHandle user, Intent launchIntent) {
-        Intent keyguardIntent = new Intent(ACTION_DISMISS_KEYGUARD);
-        keyguardIntent.setPackage(SYSTEMUI_PACKAGE_NAME);
-        keyguardIntent.putExtra(DISMISS_KEYGUARD_EXTRA_INTENT, launchIntent);
-        context.sendBroadcastAsUser(keyguardIntent, user);
-    }
-
     public static boolean deviceHasCompass(Context ctx) {
         SensorManager sm = (SensorManager) ctx.getSystemService(Context.SENSOR_SERVICE);
         return sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER) != null
