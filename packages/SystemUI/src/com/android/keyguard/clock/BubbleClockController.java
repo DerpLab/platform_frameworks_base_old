@@ -182,6 +182,9 @@ public class BubbleClockController implements ClockPlugin {
     }
 
     @Override
+    public void setStyle(Style style) {}
+
+    @Override
     public void setTextColor(int color) {
         updateColor();
     }
@@ -195,6 +198,7 @@ public class BubbleClockController implements ClockPlugin {
     private void updateColor() {
         final int primary = mPalette.getPrimaryColor();
         final int secondary = mPalette.getSecondaryColor();
+        mLockClock.setTextColor(secondary);
         mAnalogClock.setClockColors(primary, secondary);
     }
 
@@ -221,10 +225,5 @@ public class BubbleClockController implements ClockPlugin {
     public boolean shouldShowStatusArea() {
         if (mContext == null) return true;
         return Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_SHOW_STATUS_AREA, 1) == 1;
-    }
-
-    @Override
-    public boolean shouldShowInBigContainer() {
-        return true;
     }
 }
