@@ -54,6 +54,11 @@ public class TypeClockController implements ClockPlugin {
     private final SysuiColorExtractor mColorExtractor;
 
     /**
+     * Computes preferred position of clock.
+     */
+    private final SmallClockPosition mClockPosition;
+
+    /**
      * Renders preview from clock view.
      */
     private final ViewPreviewer mRenderer = new ViewPreviewer();
@@ -61,8 +66,8 @@ public class TypeClockController implements ClockPlugin {
     /**
      * Custom clock shown on AOD screen and behind stack scroller on lock.
      */
+    private View mView;
     private TypographicClock mTypeClock;
-    private ClockLayout mBigClockView;
 
     /**
      * Small clock shown on lock screen above stack scroller.
@@ -101,18 +106,27 @@ public class TypeClockController implements ClockPlugin {
         mResources = res;
         mLayoutInflater = inflater;
         mColorExtractor = colorExtractor;
+        mClockPosition = new SmallClockPosition(res);
         mContext = context;
     }
 
     private void createViews() {
-        mBigClockView  = (ClockLayout) mLayoutInflater.inflate(R.layout.typographic_clock, null);
-        mTypeClock = mBigClockView.findViewById(R.id.type_clock);
+        mView = mLayoutInflater.inflate(R.layout.type_aod_clock, null);
+        mTypeClock = mView.findViewById(R.id.type_clock);
+
+        // For now, this view is used to hide the default digital clock.
+        // Need better transition to lock screen.
+        mLockClock = (TypographicClock) mLayoutInflater.inflate(R.layout.typographic_clock, null);
+        mLockClock.setVisibility(View.GONE);
+
+        mDarkController = new CrossFadeDarkController(mView, mLockClock);
     }
 
     @Override
     public void onDestroyView() {
-        mBigClockView = null;
+        mView = null;
         mTypeClock = null;
+        mLockClock = null;
         mDarkController = null;
     }
 
@@ -150,25 +164,32 @@ public class TypeClockController implements ClockPlugin {
 
     @Override
     public View getView() {
-        return null;
+        if (mLockClock == null) {
+            createViews();
+        }
+        return mLockClock;
     }
 
     @Override
     public View getBigClockView() {
-        if (mBigClockView == null) {
+        if (mView == null) {
             createViews();
         }
-        return mBigClockView;
+        return mView;
     }
 
     @Override
     public int getPreferredY(int totalHeight) {
-        return totalHeight / 2;
+        return mClockPosition.getPreferredY();
     }
+
+    @Override
+    public void setStyle(Style style) {}
 
     @Override
     public void setTextColor(int color) {
         mTypeClock.setTextColor(color);
+        mLockClock.setTextColor(color);
     }
 
     @Override
@@ -178,26 +199,32 @@ public class TypeClockController implements ClockPlugin {
         }
         final int color = colorPalette[Math.max(0, colorPalette.length - 5)];
         mTypeClock.setClockColor(color);
+        mLockClock.setClockColor(color);
     }
 
     @Override
     public void onTimeTick() {
         mTypeClock.onTimeChanged();
+        mLockClock.onTimeChanged();
     }
 
     @Override
     public void setDarkAmount(float darkAmount) {
-        mBigClockView.setDarkAmount(darkAmount);
+        mClockPosition.setDarkAmount(darkAmount);
+        if (mDarkController != null) {
+            mDarkController.setDarkAmount(darkAmount);
+        }
     }
 
     @Override
     public void onTimeZoneChanged(TimeZone timeZone) {
         mTypeClock.onTimeZoneChanged(timeZone);
+        mLockClock.onTimeZoneChanged(timeZone);
     }
 
     @Override
     public boolean shouldShowStatusArea() {
         if (mContext == null) return true;
-        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_SHOW_STATUS_AREA, 1) == 1;
+        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.CLOCK_SHOW_STATUS_AREA, 0) == 1;
     }
 }
